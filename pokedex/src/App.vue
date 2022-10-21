@@ -1,35 +1,38 @@
 <template>
   <div id="app">
-    <div v-for="(poke, index) in pokemons" :key="index">
-      <h1>{{index + 1}} {{poke.name}}</h1>
-      <Pokemon :name="poke.name" :url="poke.url" :num="poke.num" />
+    <div class="column is-half is-offset-one-quarter">
+
+      <div v-for="(poke, index) in pokemons" :key="index">
+        <Pokemon :name="poke.name" :url="poke.url" :num="index + 1" />
+      </div>
     </div>
+
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import Pokemon from "./components/Pokemon"
+import Pokemon from "./components/Pokemon";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {
-      pokemons: []
-    }
+      pokemons: [],
+    };
   },
   created: function () {
-    axios.get("https://pokeapi.co/api/v2/pokemon?limit=100&offset=0").then(response => {
-
-      this.pokemons = response.data.results;
-      console.log(this.pokemons);
-    })
+    axios
+      .get("https://pokeapi.co/api/v2/pokemon?limit=100&offset=0")
+      .then((response) => {
+        this.pokemons = response.data.results;
+        console.log(this.pokemons);
+      });
   },
-  components() {
+  components: {
     Pokemon
   }
-
-}
+};
 </script>
 
 <style>
