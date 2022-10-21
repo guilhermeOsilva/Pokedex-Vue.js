@@ -1,6 +1,9 @@
 <template>
   <div id="app">
     <div class="column is-half is-offset-one-quarter">
+      <img src="./assets/8614.jpg" alt="">
+      <hr>
+      <h4 class="is-size-4">Pokedex</h4>
 
       <div v-for="(poke, index) in pokemons" :key="index">
         <Pokemon :name="poke.name" :url="poke.url" :num="index + 1" />
@@ -23,7 +26,7 @@ export default {
   },
   created: function () {
     axios
-      .get("https://pokeapi.co/api/v2/pokemon?limit=100&offset=0")
+      .get("https://pokeapi.co/api/v2/pokemon?limit=151&offset=0")
       .then((response) => {
         this.pokemons = response.data.results;
         console.log(this.pokemons);
